@@ -19,6 +19,10 @@ export class ItensPage {
     this.itens = itensProvider.getItens();
   }
 
+  ionViewDidEnter() {
+    this.itens = this.itensProvider.getItens();
+  }
+
   editaItem(codigo) {
     let cod = parseInt(codigo);
     this.navCtrl.push(ItemPage, { id: cod, novo: false });
@@ -26,10 +30,11 @@ export class ItensPage {
 
   deletaItem(codigo) {
     let cod = parseInt(codigo);
+    this.itensProvider.deletaItem(cod);
   }
 
   novoItem() {
-    this.navCtrl.push(ItemPage, { id: 0, novo: true });
+    this.navCtrl.push(ItemPage, { id: -1, novo: true });
   }
 
 }

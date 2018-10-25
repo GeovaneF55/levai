@@ -19,6 +19,10 @@ export class ParticipantesPage {
     this.participantes = participantesProvider.getParticipantes();
   }
 
+  ionViewDidEnter() {
+    this.participantes = this.participantesProvider.getParticipantes();
+  }
+
   editaParticipante(codigo) {
     let cod = parseInt(codigo);
     this.navCtrl.push(ParticipantePage, { id: cod, novo: false });
@@ -26,10 +30,11 @@ export class ParticipantesPage {
 
   deletaParticipante(codigo) {
     let cod = parseInt(codigo);
+    this.participantesProvider.deletaParticipante(cod);
   }
 
   novoParticipante() {
-    this.navCtrl.push(ParticipantePage, { id: 0, novo: true });
+    this.navCtrl.push(ParticipantePage, { id: -1, novo: true });
   }
 
 }

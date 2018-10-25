@@ -22,4 +22,33 @@ export class ParticipantesProvider {
     return this.participantes;
   }
 
+  editaParticipante(id: number, nome: string, cont: string) {
+    for(let i=0; i<this.participantes.length; i++) {
+      if(this.participantes[i].id == id) {
+        this.participantes[i].nome = nome;
+        this.participantes[i].contato = cont;
+        break;
+      }
+    }
+  }
+
+  deletaParticipante(id: number) {
+    for(let i=0; i<this.participantes.length; i++) {
+      if(this.participantes[i].id == id) {
+        this.participantes.splice(i,1);
+        break;
+      }
+    }
+  }
+
+  adicionaParticipante(nome: string, local: string, data: Date,
+    cont: string, obs: string) {
+    this.ultimoId++;
+    this.participantes.push({
+      id: this.ultimoId,
+      nome: nome,
+      contato: cont
+    });
+  }
+
 }

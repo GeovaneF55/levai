@@ -34,7 +34,7 @@ export class ItensProvider {
       ]
     }
   ];
-  ultimoCodigo = 3;
+  ultimoId = 3;
 
   constructor(public http: Http) {
     console.log('Hello ItensProvider Provider');
@@ -42,6 +42,44 @@ export class ItensProvider {
 
   getItens() {
     return this.itens;
+  }
+
+  editaItem(id: number, nome: string, vmin: number, vmax: number,
+    qtmin: number, qtmax: number, opcoes: Array<[string, boolean]>) {
+    for(let i=0; i<this.itens.length; i++) {
+      if(this.itens[i].id == id) {
+        this.itens[i].nome = nome;
+        this.itens[i].vmin = vmin;
+        this.itens[i].vmax = vmax;
+        this.itens[i].qtmin = qtmin;
+        this.itens[i].qtmax = qtmax;
+        this.itens[i].opcoes = opcoes;
+        break;
+      }
+    }
+  }
+
+  deletaItem(id: number) {
+    for(let i=0; i<this.itens.length; i++) {
+      if(this.itens[i].id == id) {
+        this.itens.splice(i,1);
+        break;
+      }
+    }
+  }
+
+  adicionaItem(nome: string, vmin: number, vmax: number,
+    qtmin: number, qtmax: number, opcoes: Array<[string, boolean]>) {
+    this.ultimoId++;
+    this.itens.push({
+      id: this.ultimoId,
+      nome: nome,
+      vmin: vmin,
+      vmax: vmax,
+      qtmin: qtmin,
+      qtmax: qtmax,
+      opcoes: opcoes
+    });
   }
 
 }

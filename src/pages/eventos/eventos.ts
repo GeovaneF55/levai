@@ -19,6 +19,10 @@ export class EventosPage {
       this.eventos = eventosProvider.getEventos();
   }
 
+  ionViewDidEnter() {
+    this.eventos = this.eventosProvider.getEventos();
+  }
+
   editaEvento(codigo) {
     let cod = parseInt(codigo);
     this.navCtrl.push(EventoPage, { id: cod, novo: false });
@@ -26,10 +30,11 @@ export class EventosPage {
 
   deletaEvento(codigo) {
     let cod = parseInt(codigo);
+    this.eventosProvider.deletaEvento(cod);
   }
 
   novoEvento() {
-    this.navCtrl.push(EventoPage, { id: 0, novo: true });
+    this.navCtrl.push(EventoPage, { id: -1, novo: true });
   }
 
 }

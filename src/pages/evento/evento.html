@@ -7,6 +7,43 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="no-scroll" padding>
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary">Nome:</ion-label>
+      <ion-input type="text" placeholder="Nome"
+        [(ngModel)]="nomeEvento"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Local:</ion-label>
+      <ion-input type="text" placeholder="Local" 
+        [(ngModel)]="localEvento"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Data:</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" 
+        [(ngModel)]="dataEvento"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Contato:</ion-label>
+      <ion-input type="text" placeholder="Contato" 
+        [(ngModel)]="contatoEvento"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Observações:</ion-label>
+      <ion-textarea type="text" placeholder="Observações" 
+        [(ngModel)]="observacoesEvento"></ion-textarea>
+    </ion-item>
+  </ion-list>
 
+  <ion-fab bottom right>
+    <button ion-fab (click)="alterar()" [class.invisivel]="novo">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-fab bottom right>
+    <button ion-fab (click)="incluir()" [class.invisivel]="!novo">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
