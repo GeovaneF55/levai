@@ -1,12 +1,43 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>eventos</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Eventos</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
 
+  <ion-list>
+    <ion-item-sliding *ngFor="let e of eventos">
+      <ion-item>
+        <h2>{{e.nome}}</h2>
+        <div class="containerIntro">
+            <h3>Data:</h3> <p>{{e.data | date: 'dd/MM/yyyy'}}</p>
+        </div>
+        <div class="containerIntro">
+            <h3>Local:</h3> <p>{{e.local}}</p>
+        </div>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary" (click)="editaEvento(e.id)">
+          <ion-icon name="create"></ion-icon>
+          Editar
+        </button>
+        <button ion-button color="danger" (click)="deletaEvento(e.id)">
+          <ion-icon name="trash"></ion-icon>
+          Deletar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>    
+
+  <ion-fab bottom right>
+    <button ion-fab (click)="novoEvento()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
