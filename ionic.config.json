@@ -1,0 +1,8 @@
+{
+  "name": "levai",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "pro_id": "4e843b41"
+}
