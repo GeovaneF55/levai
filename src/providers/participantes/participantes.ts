@@ -12,7 +12,7 @@ export class ParticipantesProvider {
     { id:4, nome: 'Luigi Domenico', contato: '(31)9187-1982'},
     { id:5, nome: 'Paulo Lana', contato: '(31)91723-1463'},
   ];
-  ultimoId=3;
+  ultimoId=5;
 
   constructor(public http: Http) {
     console.log('Hello ParticipantesProvider Provider');
@@ -41,8 +41,7 @@ export class ParticipantesProvider {
     }
   }
 
-  adicionaParticipante(nome: string, local: string, data: Date,
-    cont: string, obs: string) {
+  adicionaParticipante(nome: string, cont: string) {
     this.ultimoId++;
     this.participantes.push({
       id: this.ultimoId,

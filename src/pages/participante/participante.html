@@ -8,5 +8,27 @@
 
 
 <ion-content class="no-scroll" padding>
+<ion-list>
+    <ion-item>
+      <ion-label color="primary">Nome:</ion-label>
+      <ion-input type="text" placeholder="Nome"
+        [(ngModel)]="nomeParticipante"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Contato:</ion-label>
+      <ion-input type="text" placeholder="Contato" 
+        [(ngModel)]="contatoParticipante"></ion-input>
+    </ion-item>
+  </ion-list>
 
+  <ion-fab bottom right>
+    <button ion-fab (click)="alterar()" [class.invisivel]="novo">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-fab bottom right>
+    <button ion-fab (click)="incluir()" [class.invisivel]="!novo">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
