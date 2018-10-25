@@ -4,7 +4,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { EventosProvider } from '../../providers/eventos/eventos';
 import { EventoPage } from '../evento/evento';
 import { Evento } from '../../interfaces/evento';
-import { CodegenComponentFactoryResolver } from '@angular/core/src/linker/component_factory_resolver';
 
 @Component({
   selector: 'page-eventos',

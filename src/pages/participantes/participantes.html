@@ -11,5 +11,30 @@
 
 
 <ion-content padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let p of participantes">
+      <ion-item>
+        <h2>{{p.nome}}</h2>
+        <div class="containerIntro">
+            <h3>Contato:</h3> <p>{{p.contato}}</p>
+        </div>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary" (click)="editaParticipante(p.id)">
+          <ion-icon name="create"></ion-icon>
+          Editar
+        </button>
+        <button ion-button color="danger" (click)="deletaParticipante(p.id)">
+          <ion-icon name="trash"></ion-icon>
+          Deletar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>    
 
+  <ion-fab bottom right>
+    <button ion-fab (click)="novoParticipante()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

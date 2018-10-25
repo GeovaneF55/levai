@@ -28,7 +28,7 @@ export class EventosProvider {
       observacoes: ''
     } 
   ];
-  ultimoId = 3; 
+  ultimoId=3; 
 
   constructor(public http: Http) {
     console.log('Hello EventosProvider Provider');
