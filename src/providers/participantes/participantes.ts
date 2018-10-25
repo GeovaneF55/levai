@@ -18,7 +18,7 @@ export class ParticipantesProvider {
     console.log('Hello ParticipantesProvider Provider');
   }
 
-  getParticipantes(){
+  getParticipantes() {
     return this.participantes;
   }
 

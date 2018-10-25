@@ -34,7 +34,7 @@ export class EventosProvider {
     console.log('Hello EventosProvider Provider');
   }
 
-  getEventos(){
+  getEventos() {
     return this.eventos;
   }
 
