@@ -11,7 +11,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding *ngFor="let p of participantes">
+    <ion-item-sliding #slidingItem *ngFor="let p of participantes">
       <ion-item>
         <h2>{{p.nome}}</h2>
         <div class="containerIntro">
@@ -19,7 +19,7 @@
         </div>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="primary" (click)="editaParticipante(p.id)">
+        <button ion-button color="primary" (click)="editaParticipante(p.id, slidingItem)">
           <ion-icon name="create"></ion-icon>
           Editar
         </button>

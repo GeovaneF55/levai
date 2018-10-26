@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ItemSliding } from 'ionic-angular';
 
 import { ParticipantesProvider } from '../../providers/participantes/participantes';
 import { ParticipantePage } from '../participante/participante';
@@ -23,7 +23,8 @@ export class ParticipantesPage {
     this.participantes = this.participantesProvider.getParticipantes();
   }
 
-  editaParticipante(codigo) {
+  editaParticipante(codigo, slidingItem: ItemSliding) {
+    slidingItem.close();
     let cod = parseInt(codigo);
     this.navCtrl.push(ParticipantePage, { id: cod, novo: false });
   }

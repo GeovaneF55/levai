@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ItemSliding } from 'ionic-angular';
 
 import { EventosProvider } from '../../providers/eventos/eventos';
 import { EventoPage } from '../evento/evento';
@@ -23,7 +23,8 @@ export class EventosPage {
     this.eventos = this.eventosProvider.getEventos();
   }
 
-  editaEvento(codigo) {
+  editaEvento(codigo, slidingItem: ItemSliding) {
+    slidingItem.close();
     let cod = parseInt(codigo);
     this.navCtrl.push(EventoPage, { id: cod, novo: false });
   }

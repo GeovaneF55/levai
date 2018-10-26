@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ItemSliding } from 'ionic-angular';
 
 import { ItensProvider } from '../../providers/itens/itens';
 import { ItemPage } from '../item/item';
@@ -23,7 +23,8 @@ export class ItensPage {
     this.itens = this.itensProvider.getItens();
   }
 
-  editaItem(codigo) {
+  editaItem(codigo, slidingItem: ItemSliding) {
+    slidingItem.close();
     let cod = parseInt(codigo);
     this.navCtrl.push(ItemPage, { id: cod, novo: false });
   }

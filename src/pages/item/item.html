@@ -8,5 +8,42 @@
 
 
 <ion-content class="no-scroll" padding>
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary">Nome:</ion-label>
+      <ion-input type="text" placeholder="Nome"
+        [(ngModel)]="nomeItem"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Valor Mínimo:</ion-label>
+      <ion-input type="number" placeholder="Valor Mínimo" 
+        [(ngModel)]="vminItem"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Valor Máximo:</ion-label>
+      <ion-input type="number" placeholder="Valor Máximo" 
+        [(ngModel)]="vmaxItem"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Qtde. Mínimo:</ion-label>
+      <ion-input type="number" placeholder="Qtde. Mínimo" 
+        [(ngModel)]="qtminItem"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Qtde. Máximo:</ion-label>
+      <ion-input type="number" placeholder="Qtde. Máximo" 
+        [(ngModel)]="qtmaxItem"></ion-input>
+    </ion-item>
+  </ion-list>
 
+  <ion-fab bottom right>
+    <button ion-fab (click)="alterar()" [class.invisivel]="novo">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-fab bottom right>
+    <button ion-fab (click)="incluir()" [class.invisivel]="!novo">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
