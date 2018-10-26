@@ -12,22 +12,22 @@
     <ion-item>
       <ion-label color="primary">Nome:</ion-label>
       <ion-input type="text" placeholder="Nome"
-        [(ngModel)]="nomeEvento"></ion-input>
+        [(ngModel)]="nomeEvento" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Local:</ion-label>
       <ion-input type="text" placeholder="Local" 
-        [(ngModel)]="localEvento"></ion-input>
+        [(ngModel)]="localEvento" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Data:</ion-label>
       <ion-datetime displayFormat="DD/MM/YYYY" 
-        [(ngModel)]="dataEvento"></ion-datetime>
+        [(ngModel)]="dataEvento" required></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Contato:</ion-label>
       <ion-input type="text" placeholder="Contato" 
-        [(ngModel)]="contatoEvento"></ion-input>
+        [(ngModel)]="contatoEvento" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Observações:</ion-label>
@@ -35,6 +35,8 @@
         [(ngModel)]="observacoesEvento"></ion-textarea>
     </ion-item>
   </ion-list>
+
+  <!-- TODO: Adicionar lista de Itens igual no participantes-evento.html -->
 
   <ion-fab bottom right>
     <button ion-fab (click)="alterar()" [class.invisivel]="novo">

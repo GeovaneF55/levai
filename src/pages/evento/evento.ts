@@ -15,6 +15,7 @@ export class EventoPage {
   dataEvento: string;
   contatoEvento: string;
   observacoesEvento: string;
+  participantesEvento: Array<number>;
 
   novo: boolean;
 
@@ -37,6 +38,7 @@ export class EventoPage {
                       ("0" + d.getDate()).substr(-2,2);
           this.contatoEvento = eventos[i].contato;
           this.observacoesEvento = eventos[i].observacoes;
+          this.participantesEvento = eventos[i].idParticipantes;
           break;
         }
       }
@@ -49,6 +51,7 @@ export class EventoPage {
                   ("0" + d.getDate()).substr(-2,2);
       this.contatoEvento = "";
       this.observacoesEvento = "";
+      this.participantesEvento = [];
     }
   }
 
@@ -63,7 +66,9 @@ export class EventoPage {
       this.localEvento,
       d,
       this.contatoEvento,
-      this.observacoesEvento);
+      this.observacoesEvento,
+      this.participantesEvento
+    );
     this.navCtrl.pop();
   }
 
@@ -79,7 +84,9 @@ export class EventoPage {
       this.localEvento,
       d,
       this.contatoEvento,
-      this.observacoesEvento);
+      this.observacoesEvento,
+      this.participantesEvento
+    );
     this.navCtrl.pop();
   }
 }

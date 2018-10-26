@@ -4,5 +4,6 @@ export interface Evento {
     local: string,
     data: Date,
     contato: string,
-    observacoes: string
+    observacoes: string,
+    idParticipantes: Array<number>
 }

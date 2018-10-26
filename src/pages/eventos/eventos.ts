@@ -5,6 +5,8 @@ import { EventosProvider } from '../../providers/eventos/eventos';
 import { EventoPage } from '../evento/evento';
 import { Evento } from '../../interfaces/evento';
 
+import { ParticipantesEventoPage } from '../participantes-evento/participantes-evento';
+
 @Component({
   selector: 'page-eventos',
   templateUrl: 'eventos.html',
@@ -16,11 +18,16 @@ export class EventosPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public eventosProvider: EventosProvider) {
-      this.eventos = eventosProvider.getEventos();
+    this.eventos = eventosProvider.getEventos();
   }
 
   ionViewDidEnter() {
     this.eventos = this.eventosProvider.getEventos();
+  }
+
+  selecionaEvento(codigo) {
+    let cod = parseInt(codigo);
+    this.navCtrl.push(ParticipantesEventoPage, { id: cod });
   }
 
   editaEvento(codigo, slidingItem: ItemSliding) {

@@ -1,0 +1,40 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Participantes do Evento</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let pe of participantesEvento">
+      <ion-item>
+        <h2>{{pe.nome}}</h2>
+        <div class="containerIntro">
+            <h3>Contato:</h3> <p>{{pe.contato}}</p>
+        </div>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="deletaParticipante(pe.id)">
+          <ion-icon name="trash"></ion-icon>
+          Deletar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+    <ion-item>
+      <div>
+        <button ion-button round color="primary" (click)="novoParticipante()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab bottom right>
+    <button ion-fab (click)="salvarParticipantes()">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
