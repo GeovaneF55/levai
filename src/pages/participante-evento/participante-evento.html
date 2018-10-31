@@ -1,0 +1,19 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Adicionar Participante</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let pe of participantesEvento" (click)="selecionarParticipante(pe.id)">
+      <h2>{{pe.nome}}</h2>
+      <div class="containerIntro">
+          <h3>Contato:</h3> <p>{{pe.contato}}</p>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

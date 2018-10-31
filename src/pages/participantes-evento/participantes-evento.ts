@@ -3,6 +3,9 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { ParticipantesProvider } from '../../providers/participantes/participantes';
 import { EventosProvider } from '../../providers/eventos/eventos';
+
+import { ParticipanteEventoPage } from '../participante-evento/participante-evento';
+
 import { Participante } from '../../interfaces/participante';
 import { Evento } from '../../interfaces/evento';
 
@@ -13,11 +16,7 @@ import { Evento } from '../../interfaces/evento';
 export class ParticipantesEventoPage {
 
   idEvento: number;
-  nomeEvento: string;
-  localEvento: string;
-  dataEvento: string;
-  idParticipantes: Array<number>;
-
+  evento: Evento;
   participantesEvento: Array<Participante>;
 
   constructor(public navCtrl: NavController,
@@ -27,44 +26,40 @@ export class ParticipantesEventoPage {
 
     this.idEvento = navParams.get('id');
 
-    let eventos: Array<Evento> = eventosProvider.getEventos();
-    let participantes: Array<Participante> = participantesProvider.getParticipantes();
+    this.getDados();
+  }
 
-    for (let i=0; i<eventos.length; i++) {
-      if(eventos[i].id == this.idEvento) {
-        this.nomeEvento = eventos[i].nome;
-        this.localEvento = eventos[i].local;
-        let d = eventos[i].data;
-        this.dataEvento = d.getFullYear() + "-" +
-                        ("0" + (d.getMonth()+1)).substr(-2,2) + "-" +
-                        ("0" + d.getDate()).substr(-2,2);
-        
-        this.idParticipantes = eventos[i].idParticipantes;
-        break;
-      }
-    }
+  ionViewDidEnter() {
+    this.getDados();
+  }
 
-    this.participantesEvento = [];
-    for(let i=0; i<this.idParticipantes.length; i++) {
-      for(let j=0; j<participantes.length; j++){
-        if(participantes[j].id == this.idParticipantes[i]) {
-          this.participantesEvento.push({
-            id: participantes[j].id,
-            nome: participantes[j].nome,
-            contato: participantes[j].contato
-          });
-        }
-      }
-    }
+  getDados() {
+    this.evento = this.eventosProvider.getEvento(this.idEvento);
+    let participantes: Array<Participante> = this.participantesProvider.getParticipantes();
 
+    this.participantesEvento = participantes.filter(
+      participante => this.evento.idParticipantes.includes(participante.id)
+    );
   }
 
   novoParticipante() {
-
+    this.navCtrl.push(ParticipanteEventoPage, { id: this.idEvento });
   }
 
-  salvarParticipantes() {
+  deletaParticipante(codigo) {
+    let cod: number = parseInt(codigo);
 
+    let idParticipantes: Array<number> = this.evento.idParticipantes;
+    let index = idParticipantes.indexOf(cod);
+
+    idParticipantes.splice(index, 1);
+
+    this.eventosProvider.editaEvento(this.evento.id, this.evento.nome,
+      this.evento.local, this.evento.data, this.evento.contato,
+      this.evento.observacoes, idParticipantes
+    );
+
+    this.getDados();
   }
 
 }

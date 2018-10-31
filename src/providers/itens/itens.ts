@@ -44,6 +44,10 @@ export class ItensProvider {
     return this.itens;
   }
 
+  getItem(id: number) {
+    return this.itens[id];
+  }
+
   editaItem(id: number, nome: string, vmin: number, vmax: number,
     qtmin: number, qtmax: number, opcoes: Array<[string, boolean]>) {
     for(let i=0; i<this.itens.length; i++) {

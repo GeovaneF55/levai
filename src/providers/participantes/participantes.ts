@@ -22,6 +22,10 @@ export class ParticipantesProvider {
     return this.participantes;
   }
 
+  getParticipante(id: number) {
+    return this.participantes[id];
+  }
+
   editaParticipante(id: number, nome: string, cont: string) {
     for(let i=0; i<this.participantes.length; i++) {
       if(this.participantes[i].id == id) {

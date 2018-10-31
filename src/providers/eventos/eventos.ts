@@ -41,10 +41,14 @@ export class EventosProvider {
     return this.eventos;
   }
 
+  getEvento(id: number) {
+    return this.eventos[id];
+  }
+
   editaEvento(id: number, nome: string, local: string, data: Date,
     cont: string, obs: string, idPar: Array<number>) {
-    for(let i=0; i<this.eventos.length; i++) {
-      if(this.eventos[i].id == id) {
+    for (let i=0; i<this.eventos.length; i++) {
+      if (this.eventos[i].id == id) {
         this.eventos[i].nome = nome;
         this.eventos[i].local = local;
         this.eventos[i].data = data;
@@ -57,8 +61,8 @@ export class EventosProvider {
   }
 
   deletaEvento(id: number) {
-    for(let i=0; i<this.eventos.length; i++) {
-      if(this.eventos[i].id == id) {
+    for (let i=0; i<this.eventos.length; i++) {
+      if (this.eventos[i].id == id) {
         this.eventos.splice(i,1);
         break;
       }
