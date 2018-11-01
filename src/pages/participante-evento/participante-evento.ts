@@ -25,7 +25,14 @@ export class ParticipanteEventoPage {
 
     this.evento = this.eventosProvider.getEvento(idEvento);
 
-    let participantes: Array<Participante> = participantesProvider.getParticipantes();
+    let participantes: Array<Participante> = this.participantesProvider.getParticipantes();
+    this.participantesEvento = participantes.filter(
+      participante => !(this.evento.idParticipantes.includes(participante.id))
+    );
+  }
+
+  ionViewDidEnter() {
+    let participantes: Array<Participante> = this.participantesProvider.getParticipantes();
     this.participantesEvento = participantes.filter(
       participante => !(this.evento.idParticipantes.includes(participante.id))
     );

@@ -27,13 +27,15 @@ h2 {
     color:blue;
 }
 
-.containerIntro h3,
+.containerIntro h3 {
+    display: inline;
+    vertical-align: top;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+}
+
 .containerIntro p {
     display: inline;
     vertical-align: top;
     font-family: 'Open Sans', sans-serif;
-}
-
-h3 {
-    font-weight: bold;
 }

@@ -9,14 +9,13 @@
 
 </ion-header>
 
-
 <ion-content padding>
   <ion-list>
     <ion-item-sliding #slidingItem *ngFor="let i of itens">
-      <ion-item>
+      <ion-item (click)="selecionarItem(i.id)">
         <h2>{{ i.nome }}</h2>
         <div class="containerIntro">
-            <h3>Valor Mínimo:</h3> <p>{{ i.vmin | currency:"BRL":true:"1.2" }}</p>
+            <h3>Valor Máximo:</h3> <p>{{ i.vmax | currency:"BRL":true:"1.2" }}</p>
         </div>
         <div class="containerIntro">
           <h3>Qtde. Mínima:</h3> <p>{{ i.qtmin }}</p>

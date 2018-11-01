@@ -13,10 +13,18 @@
       {{ evento.nome }}
     </ion-card-header>
     <ion-card-content>
-      <p>{{ evento.data | date: 'dd/MM/yyyy' }}</p>
-      <p>{{ evento.local }}</p>
-      <p>{{ evento.contato }}</p>
-      <p>{{ evento.observacoes }}</p>
+      <div class="containerIntro">
+        <h3>Data:</h3> <p>{{ evento.data | date: 'dd/MM/yyyy' }}</p>
+      </div>
+      <div class="containerIntro">
+        <h3>Local:</h3> <p>{{ evento.local }}</p>
+      </div>
+      <div class="containerIntro">
+        <h3>Contato:</h3> <p>{{ evento.contato }}</p>
+      </div>
+      <div class="containerIntro">
+        <h3>Observações:</h3> <p>{{ evento.observacoes }}</p>
+      </div>
     </ion-card-content>
   </ion-card>
   <ion-card>
@@ -29,13 +37,17 @@
           <ion-item>
             <h2>{{ ie.nome }}</h2>
             <div class="containerIntro">
-              <h3>Valor Mínimo:</h3> <p>{{ ie.vmin }}</p>
+              <h3>Valor Máximo:</h3> <p>{{ ie.vmax }}</p>
             </div>
             <div class="containerIntro">
               <h3>Quantidade Mínimo:</h3> <p>{{ ie.qtmin }}</p>
             </div>
           </ion-item>
           <ion-item-options side="right">
+            <button ion-button color="primary" (click)="editaItem(ie.id, slidingItem)">
+              <ion-icon name="create"></ion-icon>
+              Editar
+            </button>
             <button ion-button color="danger" (click)="deletaItem(ie.id)">
               <ion-icon name="trash"></ion-icon>
               Deletar

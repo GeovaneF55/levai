@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ItemSliding } from 'ionic-angular';
 
 import { ParticipantesProvider } from '../../providers/participantes/participantes';
 import { EventosProvider } from '../../providers/eventos/eventos';
 import { ItensProvider } from '../../providers/itens/itens';
 
 import { ParticipanteEventoPage } from '../participante-evento/participante-evento';
-import { ItemEventoPage } from '../item-evento/item-evento';
+import { ItensPage } from '../itens/itens';
+import { ItemPage } from '../item/item';
 
 import { Participante } from '../../interfaces/participante';
 import { Evento } from '../../interfaces/evento';
@@ -53,7 +54,13 @@ export class ConsultarEventoPage {
   }
 
   novoItem() {
-    this.navCtrl.push(ItemEventoPage, { id: this.idEvento });
+    this.navCtrl.push(ItensPage, { id: this.idEvento });
+  }
+
+  editaItem(codigo, slidingItem: ItemSliding) {
+    slidingItem.close();
+    let cod = parseInt(codigo);
+    this.navCtrl.push(ItemPage, { id: cod });
   }
 
   deletaItem(codigo) {
