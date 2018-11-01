@@ -14,12 +14,12 @@
   <ion-list>
     <ion-item-sliding #slidingItem *ngFor="let i of itens">
       <ion-item>
-        <h2>{{i.nome}}</h2>
+        <h2>{{ i.nome }}</h2>
         <div class="containerIntro">
-            <h3>Valor Mínimo:</h3> <p>{{i.vmin}}</p>
+            <h3>Valor Mínimo:</h3> <p>{{ i.vmin | currency:"BRL":true:"1.2" }}</p>
         </div>
         <div class="containerIntro">
-          <h3>Qtde. Mínima:</h3> <p>{{i.qtmin}}</p>
+          <h3>Qtde. Mínima:</h3> <p>{{ i.qtmin }}</p>
         </div>
       </ion-item>
       <ion-item-options side="right">

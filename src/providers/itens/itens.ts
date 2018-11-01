@@ -45,31 +45,25 @@ export class ItensProvider {
   }
 
   getItem(id: number) {
-    return this.itens[id];
+    let index = this.itens.findIndex(item => item.id == id);
+    return this.itens[index];
   }
 
   editaItem(id: number, nome: string, vmin: number, vmax: number,
     qtmin: number, qtmax: number, opcoes: Array<[string, boolean]>) {
-    for(let i=0; i<this.itens.length; i++) {
-      if(this.itens[i].id == id) {
-        this.itens[i].nome = nome;
-        this.itens[i].vmin = vmin;
-        this.itens[i].vmax = vmax;
-        this.itens[i].qtmin = qtmin;
-        this.itens[i].qtmax = qtmax;
-        this.itens[i].opcoes = opcoes;
-        break;
-      }
-    }
+    let index = this.itens.findIndex(item => item.id == id);
+
+    this.itens[index].nome = nome;
+    this.itens[index].vmin = vmin;
+    this.itens[index].vmax = vmax;
+    this.itens[index].qtmin = qtmin;
+    this.itens[index].qtmax = qtmax;
+    this.itens[index].opcoes = opcoes;
   }
 
   deletaItem(id: number) {
-    for(let i=0; i<this.itens.length; i++) {
-      if(this.itens[i].id == id) {
-        this.itens.splice(i,1);
-        break;
-      }
-    }
+    let index = this.itens.findIndex(item => item.id == id);
+    this.itens.splice(index,1);
   }
 
   adicionaItem(nome: string, vmin: number, vmax: number,

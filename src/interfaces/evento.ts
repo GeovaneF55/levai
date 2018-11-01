@@ -5,5 +5,6 @@ export interface Evento {
     data: Date,
     contato: string,
     observacoes: string,
-    idParticipantes: Array<number>
+    idParticipantes: Array<number>,
+    idItens: Array<number>
 }

@@ -5,7 +5,7 @@ import { EventosProvider } from '../../providers/eventos/eventos';
 import { EventoPage } from '../evento/evento';
 import { Evento } from '../../interfaces/evento';
 
-import { ParticipantesEventoPage } from '../participantes-evento/participantes-evento';
+import { ConsultarEventoPage } from '../consultar-evento/consultar-evento';
 
 @Component({
   selector: 'page-eventos',
@@ -27,7 +27,7 @@ export class EventosPage {
 
   selecionaEvento(codigo) {
     let cod = parseInt(codigo);
-    this.navCtrl.push(ParticipantesEventoPage, { id: cod });
+    this.navCtrl.push(ConsultarEventoPage, { id: cod });
   }
 
   editaEvento(codigo, slidingItem: ItemSliding) {

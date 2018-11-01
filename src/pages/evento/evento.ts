@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { EventosProvider } from '../../providers/eventos/eventos';
+import { Evento } from '../../interfaces/evento';
 
 @Component({
   selector: 'page-evento',
@@ -16,6 +17,7 @@ export class EventoPage {
   contatoEvento: string;
   observacoesEvento: string;
   participantesEvento: Array<number>;
+  itensEvento: Array<number>;
 
   novo: boolean;
 
@@ -27,21 +29,18 @@ export class EventoPage {
     this.novo = navParams.get('novo');
 
     if (!this.novo) {
-      let eventos = eventosProvider.getEventos();
-      for (let i=0; i<eventos.length; i++) {
-        if (eventos[i].id == this.idEvento) {
-          this.nomeEvento = eventos[i].nome;
-          this.localEvento = eventos[i].local;
-          let d = eventos[i].data;
-          this.dataEvento = d.getFullYear() + "-" +
-                      ("0" + (d.getMonth()+1)).substr(-2,2) + "-" +
-                      ("0" + d.getDate()).substr(-2,2);
-          this.contatoEvento = eventos[i].contato;
-          this.observacoesEvento = eventos[i].observacoes;
-          this.participantesEvento = eventos[i].idParticipantes;
-          break;
-        }
-      }
+      let evento: Evento = this.eventosProvider.getEvento(this.idEvento);
+
+      this.nomeEvento = evento.nome;
+      this.localEvento = evento.local;
+      let d = evento.data;
+      this.dataEvento = d.getFullYear() + "-" +
+                  ("0" + (d.getMonth()+1)).substr(-2,2) + "-" +
+                  ("0" + d.getDate()).substr(-2,2);
+      this.contatoEvento = evento.contato;
+      this.observacoesEvento = evento.observacoes;
+      this.participantesEvento = evento.idParticipantes;
+      this.itensEvento = evento.idItens;
     } else {
       this.nomeEvento = "";
       this.localEvento = "";
@@ -52,6 +51,7 @@ export class EventoPage {
       this.contatoEvento = "";
       this.observacoesEvento = "";
       this.participantesEvento = [];
+      this.itensEvento = [];
     }
   }
 
@@ -67,7 +67,8 @@ export class EventoPage {
       d,
       this.contatoEvento,
       this.observacoesEvento,
-      this.participantesEvento
+      this.participantesEvento,
+      this.itensEvento
     );
     this.navCtrl.pop();
   }
@@ -85,7 +86,8 @@ export class EventoPage {
       d,
       this.contatoEvento,
       this.observacoesEvento,
-      this.participantesEvento
+      this.participantesEvento,
+      this.itensEvento
     );
     this.navCtrl.pop();
   }

@@ -23,26 +23,21 @@ export class ParticipantesProvider {
   }
 
   getParticipante(id: number) {
-    return this.participantes[id];
+    let index = this.participantes.findIndex(participante => participante.id == id);
+    return this.participantes[index];
   }
 
   editaParticipante(id: number, nome: string, cont: string) {
-    for(let i=0; i<this.participantes.length; i++) {
-      if(this.participantes[i].id == id) {
-        this.participantes[i].nome = nome;
-        this.participantes[i].contato = cont;
-        break;
-      }
-    }
+    let index = this.participantes.findIndex(participante => participante.id == id);
+
+    this.participantes[index].nome = nome;
+    this.participantes[index].contato = cont;
   }
 
   deletaParticipante(id: number) {
-    for(let i=0; i<this.participantes.length; i++) {
-      if(this.participantes[i].id == id) {
-        this.participantes.splice(i,1);
-        break;
-      }
-    }
+    let index = this.participantes.findIndex(participante => participante.id == id);
+
+    this.participantes.splice(index,1);
   }
 
   adicionaParticipante(nome: string, cont: string) {

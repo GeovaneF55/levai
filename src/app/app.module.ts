@@ -12,8 +12,9 @@ import { ItensPage } from '../pages/itens/itens';
 import { ItemPage } from '../pages/item/item';
 import { ParticipantesPage } from '../pages/participantes/participantes';
 import { ParticipantePage } from '../pages/participante/participante';
-import { ParticipantesEventoPage } from '../pages/participantes-evento/participantes-evento';
+import { ConsultarEventoPage } from '../pages/consultar-evento/consultar-evento';
 import { ParticipanteEventoPage } from '../pages/participante-evento/participante-evento';
+import { ItemEventoPage } from '../pages/item-evento/item-evento';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -34,8 +35,9 @@ import { ParticipantesProvider } from '../providers/participantes/participantes'
     ItemPage,
     ParticipantesPage,
     ParticipantePage,
-    ParticipantesEventoPage,
-    ParticipanteEventoPage
+    ConsultarEventoPage,
+    ParticipanteEventoPage,
+    ItemEventoPage
   ],
   imports: [
     BrowserModule,
@@ -52,8 +54,9 @@ import { ParticipantesProvider } from '../providers/participantes/participantes'
     ItemPage,
     ParticipantesPage,
     ParticipantePage,
-    ParticipantesEventoPage,
-    ParticipanteEventoPage
+    ConsultarEventoPage,
+    ParticipanteEventoPage,
+    ItemEventoPage
   ],
   providers: [
     StatusBar,

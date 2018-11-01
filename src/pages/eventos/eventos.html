@@ -14,12 +14,12 @@
   <ion-list>
     <ion-item-sliding #slidingItem *ngFor="let e of eventos">
       <ion-item (click)="selecionaEvento(e.id)">
-        <h2>{{e.nome}}</h2>
+        <h2>{{ e.nome }}</h2>
         <div class="containerIntro">
-            <h3>Data:</h3> <p>{{e.data | date: 'dd/MM/yyyy'}}</p>
+            <h3>Data:</h3> <p>{{ e.data | date: 'dd/MM/yyyy' }}</p>
         </div>
         <div class="containerIntro">
-            <h3>Local:</h3> <p>{{e.local}}</p>
+            <h3>Local:</h3> <p>{{ e.local }}</p>
         </div>
       </ion-item>
       <ion-item-options side="right">

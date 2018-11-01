@@ -1,0 +1,77 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Consultar Evento</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      {{ evento.nome }}
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ evento.data | date: 'dd/MM/yyyy' }}</p>
+      <p>{{ evento.local }}</p>
+      <p>{{ evento.contato }}</p>
+      <p>{{ evento.observacoes }}</p>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      Itens
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item-sliding #slidingItem *ngFor="let ie of itensEvento">
+          <ion-item>
+            <h2>{{ ie.nome }}</h2>
+            <div class="containerIntro">
+              <h3>Valor Mínimo:</h3> <p>{{ ie.vmin }}</p>
+            </div>
+            <div class="containerIntro">
+              <h3>Quantidade Mínimo:</h3> <p>{{ ie.qtmin }}</p>
+            </div>
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="danger" (click)="deletaItem(ie.id)">
+              <ion-icon name="trash"></ion-icon>
+              Deletar
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+      <button ion-button round color="primary" (click)="novoItem()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-card-content>        
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      Participantes
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item-sliding #slidingItem *ngFor="let pe of participantesEvento">
+          <ion-item>
+            <h2>{{ pe.nome }}</h2>
+            <div class="containerIntro">
+              <h3>Contato:</h3> <p>{{ pe.contato }}</p>
+            </div>
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="danger" (click)="deletaParticipante(pe.id)">
+              <ion-icon name="trash"></ion-icon>
+              Deletar
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+      <button ion-button round color="primary" (click)="novoParticipante()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-card-content>        
+  </ion-card>
+</ion-content>

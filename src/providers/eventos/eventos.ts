@@ -12,7 +12,8 @@ export class EventosProvider {
       data: new Date(2018, 9, 24),
       contato: '(31)91237-1092',
       observacoes: '',
-      idParticipantes: [1, 2]
+      idParticipantes: [1, 2],
+      idItens: [1,3]
     },
     {
       id: 2, nome: 'Pokemon Lendário',
@@ -20,7 +21,8 @@ export class EventosProvider {
       data: new Date(2018, 10, 20),
       contato: '(41)91273-1289',
       observacoes: '',
-      idParticipantes: [2, 4]
+      idParticipantes: [2, 4],
+      idItens: [1,2]
     },
     {
       id: 3, nome: 'Amigo Oculto',
@@ -28,7 +30,8 @@ export class EventosProvider {
       data: new Date(2018, 11, 19),
       contato: '(51)91273-1231',
       observacoes: '',
-      idParticipantes: [3, 5]
+      idParticipantes: [3, 5],
+      idItens: [2,3]
     } 
   ];
   ultimoId=3; 
@@ -42,35 +45,30 @@ export class EventosProvider {
   }
 
   getEvento(id: number) {
-    return this.eventos[id];
+    let index = this.eventos.findIndex(evento => evento.id == id);
+    return this.eventos[index];
   }
 
   editaEvento(id: number, nome: string, local: string, data: Date,
-    cont: string, obs: string, idPar: Array<number>) {
-    for (let i=0; i<this.eventos.length; i++) {
-      if (this.eventos[i].id == id) {
-        this.eventos[i].nome = nome;
-        this.eventos[i].local = local;
-        this.eventos[i].data = data;
-        this.eventos[i].contato = cont;
-        this.eventos[i].observacoes = obs;
-        this.eventos[i].idParticipantes = idPar;
-        break;
-      }
-    }
+    cont: string, obs: string, idPar: Array<number>, idIt: Array<number>) {
+    let index = this.eventos.findIndex(evento => evento.id == id);
+
+    this.eventos[index].nome = nome;
+    this.eventos[index].local = local;
+    this.eventos[index].data = data;
+    this.eventos[index].contato = cont;
+    this.eventos[index].observacoes = obs;
+    this.eventos[index].idParticipantes = idPar;
+    this.eventos[index].idItens = idIt;
   }
 
   deletaEvento(id: number) {
-    for (let i=0; i<this.eventos.length; i++) {
-      if (this.eventos[i].id == id) {
-        this.eventos.splice(i,1);
-        break;
-      }
-    }
+    let index = this.eventos.findIndex(evento => evento.id == id);
+    this.eventos.splice(index,1);
   }
 
   adicionaEvento(nome: string, local: string, data: Date,
-    cont: string, obs: string, idPar: Array<number>) {
+    cont: string, obs: string, idPar: Array<number>, idIt: Array<number>) {
     this.ultimoId++;
     this.eventos.push({
       id: this.ultimoId,
@@ -79,7 +77,8 @@ export class EventosProvider {
       data: data,
       contato: cont,
       observacoes: obs,
-      idParticipantes: idPar
+      idParticipantes: idPar,
+      idItens: idIt
     });
   }
 
