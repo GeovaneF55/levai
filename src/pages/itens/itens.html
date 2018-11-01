@@ -1,17 +1,15 @@
 <ion-header>
-
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Itens</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding #slidingItem *ngFor="let i of itens">
+    <ion-item-sliding #slidingItens *ngFor="let i of itens">
       <ion-item (click)="selecionarItem(i.id)">
         <h2>{{ i.nome }}</h2>
         <div class="containerIntro">
@@ -22,7 +20,7 @@
         </div>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="primary" (click)="editaItem(i.id, slidingItem)">
+        <button ion-button color="primary" (click)="editaItem(i.id, slidingItens)">
           <ion-icon name="create"></ion-icon>
           Editar
         </button>

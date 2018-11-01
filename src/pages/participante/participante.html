@@ -1,33 +1,46 @@
 <ion-header>
-
   <ion-navbar>
     <ion-title>Participante</ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content class="no-scroll" padding>
 <ion-list>
     <ion-item>
       <ion-label color="primary">Nome:</ion-label>
       <ion-input type="text" placeholder="Nome"
-        [(ngModel)]="nomeParticipante" required></ion-input>
+        [(ngModel)]="nomeParticipante" #nomePar="ngModel" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Contato:</ion-label>
       <ion-input type="text" placeholder="Contato" 
-        [(ngModel)]="contatoParticipante" required></ion-input>
+        [(ngModel)]="contatoParticipante" #contatoPar="ngModel" required></ion-input>
     </ion-item>
   </ion-list>
 
+  <ion-card class="alert" *ngIf="!nomePar.valid && nomePar.dirty">
+    <ion-card-content>
+      <p>O nome do participante não pode ficar em branco.</p>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card class="alert" *ngIf="!contatoPar.valid && contatoPar.dirty">
+    <ion-card-content>
+      <p>O contato do participante não pode ficar em branco.</p>
+    </ion-card-content>
+  </ion-card>
+
   <ion-fab bottom right>
-    <button ion-fab (click)="alterar()" [class.invisivel]="novo">
+    <button ion-fab (click)="alterar()"
+    [class.invisivel]="novo"
+    [disabled]="!nomePar.valid || !contatoPar.valid">
       <ion-icon name="checkmark"></ion-icon>
     </button>
   </ion-fab>
   <ion-fab bottom right>
-    <button ion-fab (click)="incluir()" [class.invisivel]="!novo">
+    <button ion-fab (click)="incluir()"
+    [class.invisivel]="!novo"
+    [disabled]="!nomePar.valid || !contatoPar.valid">
       <ion-icon name="checkmark"></ion-icon>
     </button>
   </ion-fab>

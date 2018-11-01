@@ -1,18 +1,16 @@
 <ion-header>
-
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Eventos</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 <ion-content padding>
 
   <ion-list>
-    <ion-item-sliding #slidingItem *ngFor="let e of eventos">
+    <ion-item-sliding #slidingEvento *ngFor="let e of eventos">
       <ion-item (click)="selecionaEvento(e.id)">
         <h2>{{ e.nome }}</h2>
         <div class="containerIntro">
@@ -23,7 +21,7 @@
         </div>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="primary" (click)="editaEvento(e.id, slidingItem)">
+        <button ion-button color="primary" (click)="editaEvento(e.id, slidingEvento)">
           <ion-icon name="create"></ion-icon>
           Editar
         </button>

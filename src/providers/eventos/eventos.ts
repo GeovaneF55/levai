@@ -11,7 +11,7 @@ export class EventosProvider {
       local: 'Rua Vera Cruz, 559 - Contagem',
       data: new Date(2018, 9, 24),
       contato: '(31)91237-1092',
-      observacoes: '',
+      observacoes: 'Evento dedicado a nossa rainha xuxa. Vamos amá-la sempre!! s2',
       idParticipantes: [1, 2],
       idItens: [1,3]
     },
@@ -20,7 +20,7 @@ export class EventosProvider {
       local: 'Rua Castigliano, 478 - Belo Horizonte',
       data: new Date(2018, 10, 20),
       contato: '(41)91273-1289',
-      observacoes: '',
+      observacoes: 'Evento dedicado para pegar o pokemon Lendário Mew Two. Troco Lapras, chamar inbox.',
       idParticipantes: [2, 4],
       idItens: [1,2]
     },
@@ -29,7 +29,7 @@ export class EventosProvider {
       local: 'Rua Tenente Coronel, 338 - Betim',
       data: new Date(2018, 11, 19),
       contato: '(51)91273-1231',
-      observacoes: '',
+      observacoes: 'Esse evento é secreto, se não foi chamado é pq niguém gosta de você',
       idParticipantes: [3, 5],
       idItens: [2,3]
     } 

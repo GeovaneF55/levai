@@ -1,33 +1,30 @@
 <ion-header>
-
   <ion-navbar>
     <ion-title>Evento</ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content class="no-scroll" padding>
   <ion-list>
     <ion-item>
       <ion-label color="primary">Nome:</ion-label>
       <ion-input type="text" placeholder="Nome"
-        [(ngModel)]="nomeEvento" required></ion-input>
+        [(ngModel)]="nomeEvento" #nomeEv="ngModel" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Local:</ion-label>
       <ion-input type="text" placeholder="Local" 
-        [(ngModel)]="localEvento" required></ion-input>
+        [(ngModel)]="localEvento" #localEv="ngModel" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Data:</ion-label>
       <ion-datetime displayFormat="DD/MM/YYYY" 
-        [(ngModel)]="dataEvento" required></ion-datetime>
+        [(ngModel)]="dataEvento" #dataEv="ngModel" required></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Contato:</ion-label>
       <ion-input type="text" placeholder="Contato" 
-        [(ngModel)]="contatoEvento" required></ion-input>
+        [(ngModel)]="contatoEvento" #contatoEv="ngModel" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Observações:</ion-label>
@@ -36,15 +33,41 @@
     </ion-item>
   </ion-list>
 
-  <!-- TODO: Adicionar lista de Itens igual no participantes-evento.html -->
+  <ion-card class="alert" *ngIf="!nomeEv.valid && nomeEv.dirty">
+    <ion-card-content>
+      <p>O nome do Evento não pode ficar em branco.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="alert" *ngIf="!localEv.valid && localEv.dirty">
+    <ion-card-content>
+      <p>O local do evento não pode ficar em branco.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="alert" *ngIf="!dataEv.valid && dataEv.dirty">
+    <ion-card-content>
+      <p>A data do evento não pode ficar em branco.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="alert" *ngIf="!contatoEv.valid && contatoEv.dirty">
+    <ion-card-content>
+      <p>O contato do administrador do evento não pode ficar em branco.</p>
+    </ion-card-content>
+  </ion-card>
 
   <ion-fab bottom right>
-    <button ion-fab (click)="alterar()" [class.invisivel]="novo">
+    <button ion-fab (click)="alterar()"
+    [class.invisivel]="novo"
+    [disabled]="!nomeEv.valid || !localEv.valid || !dataEv.valid || !contatoEv.valid">
       <ion-icon name="checkmark"></ion-icon>
     </button>
   </ion-fab>
   <ion-fab bottom right>
-    <button ion-fab (click)="incluir()" [class.invisivel]="!novo">
+    <button ion-fab (click)="incluir()"
+    [class.invisivel]="!novo"
+    [disabled]="!nomeEv.valid || !localEv.valid || !dataEv.valid || !contatoEv.valid">
       <ion-icon name="checkmark"></ion-icon>
     </button>
   </ion-fab>

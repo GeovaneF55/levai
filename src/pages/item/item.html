@@ -1,9 +1,7 @@
 <ion-header>
-
   <ion-navbar>
     <ion-title>Item</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 <ion-content class="no-scroll" padding>
@@ -11,27 +9,49 @@
     <ion-item>
       <ion-label color="primary">Nome:</ion-label>
       <ion-input type="text" placeholder="Nome"
-        [(ngModel)]="nomeItem" required></ion-input>
+        [(ngModel)]="nomeItem" #nomeIt="ngModel" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Valor Máximo:</ion-label>
       <ion-input type="number" placeholder="Valor Máximo" 
-        min="1" [(ngModel)]="vmaxItem" required></ion-input>
+        min="1" [(ngModel)]="vmaxItem" #vmaxIt="ngModel" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Qtde. Mínimo:</ion-label>
       <ion-input type="number" placeholder="Qtde. Mínimo" 
-        min="1" [(ngModel)]="qtminItem" required></ion-input>
+        min="1" [(ngModel)]="qtminItem" #qtminIt="ngModel" required></ion-input>
     </ion-item>
   </ion-list>
 
+  <ion-card class="alert" *ngIf="!nomeIt.valid && nomeIt.dirty">
+    <ion-card-content>
+      <p>O nome do item não pode ficar em branco.</p>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card class="alert" *ngIf="!vmaxIt.valid && vmaxIt.dirty">
+    <ion-card-content>
+      <p>A valor máximo do item não pode ficar em branco.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="alert" *ngIf="!qtminIt.valid && qtminIt.dirty">
+    <ion-card-content>
+      <p>A quantidade mínima do item não pode ficar em branco.</p>
+    </ion-card-content>
+  </ion-card>
+
   <ion-fab bottom right>
-    <button ion-fab (click)="alterar()" [class.invisivel]="novo">
+    <button ion-fab (click)="alterar()"
+    [class.invisivel]="novo"
+    [disabled]="!nomeIt.valid || !vmaxIt.valid || !qtminIt.valid">
       <ion-icon name="checkmark"></ion-icon>
     </button>
   </ion-fab>
   <ion-fab bottom right>
-    <button ion-fab (click)="incluir()" [class.invisivel]="!novo">
+    <button ion-fab (click)="incluir()"
+    [class.invisivel]="!novo"
+    [disabled]="!nomeIt.valid || !vmaxIt.valid || !qtminIt.valid">
       <ion-icon name="checkmark"></ion-icon>
     </button>
   </ion-fab>
