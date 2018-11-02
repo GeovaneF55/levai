@@ -26,13 +26,14 @@ export class ItensPage {
     let idEvento = this.navParams.get("id");
     this.evento = this.eventosProvider.getEvento(idEvento);
 
-    let itens: Array<Item> = this.itensProvider.getItens();
-    this.itens = itens.filter(
-      item => !(this.evento.idItens.includes(item.id))
-    );
+    this.atualizaItens();
   }
 
   ionViewDidEnter() {
+    this.atualizaItens();
+  }
+
+  atualizaItens() {
     let itens: Array<Item> = this.itensProvider.getItens();
     this.itens = itens.filter(
       item => !(this.evento.idItens.includes(item.id))
@@ -61,6 +62,8 @@ export class ItensPage {
   deletaItem(codigo) {
     let cod = parseInt(codigo);
     this.itensProvider.deletaItem(cod);
+
+    this.atualizaItens();
   }
 
   novoItem() {

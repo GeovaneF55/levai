@@ -17,11 +17,16 @@ export class EventosPage {
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    public eventosProvider: EventosProvider) {
-    this.eventos = eventosProvider.getEventos();
+    public eventosProvider: EventosProvider)
+  {
+    this.atualizaEventos();
   }
 
   ionViewDidEnter() {
+    this.atualizaEventos();
+  }
+
+  atualizaEventos() {
     this.eventos = this.eventosProvider.getEventos();
   }
 
@@ -39,6 +44,8 @@ export class EventosPage {
   deletaEvento(codigo) {
     let cod = parseInt(codigo);
     this.eventosProvider.deletaEvento(cod);
+
+    this.atualizaEventos();
   }
 
   novoEvento() {

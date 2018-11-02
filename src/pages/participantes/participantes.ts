@@ -15,11 +15,16 @@ export class ParticipantesPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public participantesProvider: ParticipantesProvider) {
-    this.participantes = participantesProvider.getParticipantes();
+    public participantesProvider: ParticipantesProvider)
+  {
+    this.atualizaParticipantes();
   }
 
   ionViewDidEnter() {
+    this.atualizaParticipantes();
+  }
+
+  atualizaParticipantes() {
     this.participantes = this.participantesProvider.getParticipantes();
   }
 
@@ -32,6 +37,8 @@ export class ParticipantesPage {
   deletaParticipante(codigo) {
     let cod = parseInt(codigo);
     this.participantesProvider.deletaParticipante(cod);
+
+    this.atualizaParticipantes();
   }
 
   novoParticipante() {
