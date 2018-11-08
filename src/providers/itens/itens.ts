@@ -36,15 +36,15 @@ export class ItensProvider {
     });
   }
 
-  getItem(cod: string): Promise<Item> {
+  getItem(codigo: string): Promise<Item> {
     return new Promise(resolve => {
       const db = firebase.database();
-      db.ref('itens/' + cod).once('value').then(function(snapshot) {
+      db.ref('itens/' + codigo).once('value').then(function(snapshot) {
         const resp = snapshot.val() ? snapshot.val() : undefined;
         let item: Item;
         if(resp) {
            item = {
-            id: resp.id,
+            id: codigo,
             nome: resp.nome,
             vmax: resp.vmax,
             qtmin: resp.qtmin

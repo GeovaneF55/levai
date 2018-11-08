@@ -34,7 +34,7 @@ export class EventoPage {
 
         this.nomeEvento = evento.nome;
         this.localEvento = evento.local;
-        let d = evento.data;
+        let d = new Date(evento.data);
         this.dataEvento = d.getFullYear() + "-" +
                     ("0" + (d.getMonth()+1)).substr(-2,2) + "-" +
                     ("0" + d.getDate()).substr(-2,2);

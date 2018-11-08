@@ -49,7 +49,7 @@ export class ParticipanteEventoPage {
     idParticipantes.push(codigo);
 
     this.eventosProvider.editaEvento(this.evento.id, this.evento.nome,
-      this.evento.local, this.evento.data, this.evento.contato,
+      this.evento.local, new Date(this.evento.data), this.evento.contato,
       this.evento.observacoes, idParticipantes, this.evento.idItens
     );
     this.navCtrl.pop();

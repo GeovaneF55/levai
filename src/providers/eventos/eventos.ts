@@ -17,7 +17,7 @@ export class EventosProvider {
         const resp = snapshot.val() ? snapshot.val() : undefined;
         let eventos : Array<Evento> = []
         
-        if (resp){
+        if (resp) {
           const eventoKeys = Object.keys(resp);
   
           eventoKeys.forEach(key => {
@@ -29,8 +29,8 @@ export class EventosProvider {
               data: evento.data,
               contato: evento.contato,
               observacoes: evento.observacoes,
-              idParticipantes: evento.idParticipantes,
-              idItens: evento.idItens
+              idParticipantes: evento.idParticipantes ? evento.idParticipantes : [],
+              idItens: evento.idItens ? evento.idItens : []
             });
           });
         }
@@ -40,22 +40,22 @@ export class EventosProvider {
     });
   }
 
-  getEvento(cod: string): Promise<Evento> {
+  getEvento(codigo: string): Promise<Evento> {
     return new Promise(resolve => {
       const db = firebase.database();
-      db.ref('eventos/' + cod).once('value').then(function(snapshot) {
+      db.ref('eventos/' + codigo).once('value').then(function(snapshot) {
         const resp = snapshot.val() ? snapshot.val() : undefined;
         let evento: Evento;
-        if(resp) {
-           evento = {
-            id: resp.id,
+        if (resp) {
+          evento = {
+            id: codigo,
             nome: resp.nome,
             local: resp.local,
             data: resp.data,
             contato: resp.contato,
             observacoes: resp.observacoes,
-            idParticipantes: resp.idParticipantes,
-            idItens: resp.idItens
+            idParticipantes: resp.idParticipantes ? resp.idParticipantes : [],
+            idItens: resp.idItens ? resp.idItens : [],
           }
         }
         resolve(evento);
@@ -69,7 +69,7 @@ export class EventosProvider {
     let evento = {
       nome: nome,
       local: local,
-      data: data,
+      data: data.getTime(),
       contato: contato,
       observacoes: observacoes,
       idParticipantes: idParticipantes,
@@ -95,10 +95,11 @@ export class EventosProvider {
   adicionaEvento(nome: string, local: string, data: Date,
     contato: string, observacoes: string, idParticipantes: Array<string>,
     idItens: Array<string>): Promise <any> {
+
     let evento = {
       nome: nome,
       local: local,
-      data: data,
+      data: data.getTime(),
       contato: contato,
       observacoes: observacoes,
       idParticipantes: idParticipantes,

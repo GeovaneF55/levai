@@ -35,15 +35,15 @@ export class ParticipantesProvider {
     });
   }
 
-  getParticipante(cod: string): Promise<Participante> {
+  getParticipante(codigo: string): Promise<Participante> {
     return new Promise(resolve => {
       const db = firebase.database();
-      db.ref('participantes/' + cod).once('value').then(function(snapshot) {
+      db.ref('participantes/' + codigo).once('value').then(function(snapshot) {
         const resp = snapshot.val() ? snapshot.val() : undefined;
         let participante: Participante;
         if(resp) {
            participante = {
-            id: resp.id,
+            id: codigo,
             nome: resp.nome,
             contato: resp.contato
           }

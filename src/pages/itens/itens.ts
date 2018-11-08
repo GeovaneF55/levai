@@ -50,7 +50,7 @@ export class ItensPage {
     idItens.push(codigo);
 
     this.eventosProvider.editaEvento(this.evento.id, this.evento.nome,
-      this.evento.local, this.evento.data, this.evento.contato,
+      this.evento.local, new Date(this.evento.data), this.evento.contato,
       this.evento.observacoes, this.evento.idParticipantes, idItens
     );
     this.navCtrl.pop();

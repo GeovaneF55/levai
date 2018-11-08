@@ -32,6 +32,10 @@ export class ConsultarEventoPage {
 
     this.idEvento = navParams.get('id');
 
+    this.evento = { id: this.idEvento, nome: "", local: "", data: new Date,
+      contato: "", observacoes: "", idParticipantes: [], idItens: []
+    }
+
     this.getDados();
   }
 
@@ -42,23 +46,24 @@ export class ConsultarEventoPage {
   getDados() {
     this.eventosProvider.getEvento(this.idEvento).then(dados => {
       this.evento = dados;
+      
+      this.participantesProvider.getParticipantes().then(dados => {
+        let participantes: Array<Participante> = dados;
+  
+        this.participantesEvento = participantes.filter(
+          participante => this.evento.idParticipantes.includes(participante.id)
+        );
+      });
+      
+      this.itensProvider.getItens().then(dados => {
+        let itens: Array<Item> = dados;
+  
+        this.itensEvento = itens.filter(
+          item => this.evento.idItens.includes(item.id)
+        );
+      });
     });
-    
-    this.participantesProvider.getParticipantes().then(dados => {
-      let participantes: Array<Participante> = dados;
 
-      this.participantesEvento = participantes.filter(
-        participante => this.evento.idParticipantes.includes(participante.id)
-      );
-    });
-    
-    this.itensProvider.getItens().then(dados => {
-      let itens: Array<Item> = dados;
-
-      this.itensEvento = itens.filter(
-        item => this.evento.idItens.includes(item.id)
-      );
-    });
   }
 
   novoItem() {
@@ -77,7 +82,7 @@ export class ConsultarEventoPage {
     idItens.splice(index, 1);
 
     this.eventosProvider.editaEvento(this.evento.id, this.evento.nome,
-      this.evento.local, this.evento.data, this.evento.contato,
+      this.evento.local, new Date(this.evento.data), this.evento.contato,
       this.evento.observacoes, this.evento.idParticipantes, idItens
     );
 
@@ -95,7 +100,7 @@ export class ConsultarEventoPage {
     idParticipantes.splice(index, 1);
 
     this.eventosProvider.editaEvento(this.evento.id, this.evento.nome,
-      this.evento.local, this.evento.data, this.evento.contato,
+      this.evento.local, new Date(this.evento.data), this.evento.contato,
       this.evento.observacoes, idParticipantes, this.evento.idItens
     );
 
