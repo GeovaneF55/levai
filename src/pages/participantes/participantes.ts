@@ -25,24 +25,24 @@ export class ParticipantesPage {
   }
 
   atualizaParticipantes() {
-    this.participantes = this.participantesProvider.getParticipantes();
+    this.participantesProvider.getParticipantes().then( dados => {
+      this.participantes = dados;
+    });
   }
 
   editaParticipante(codigo, slidingItem: ItemSliding) {
     slidingItem.close();
-    let cod = parseInt(codigo);
-    this.navCtrl.push(ParticipantePage, { id: cod, novo: false });
+    this.navCtrl.push(ParticipantePage, { id: codigo, novo: false });
   }
 
   deletaParticipante(codigo) {
-    let cod = parseInt(codigo);
-    this.participantesProvider.deletaParticipante(cod);
-
-    this.atualizaParticipantes();
+    this.participantesProvider.deletaParticipante(codigo).then(response => {
+      this.atualizaParticipantes();
+    });
   }
 
   novoParticipante() {
-    this.navCtrl.push(ParticipantePage, { id: -1, novo: true });
+    this.navCtrl.push(ParticipantePage, { id: '-1', novo: true });
   }
 
 }

@@ -24,7 +24,9 @@ export class ItensPage {
     public eventosProvider: EventosProvider)
   {
     let idEvento = this.navParams.get("id");
-    this.evento = this.eventosProvider.getEvento(idEvento);
+    this.eventosProvider.getEvento(idEvento).then(dados => {
+      this.evento = dados;
+    });
 
     this.atualizaItens();
   }
@@ -34,17 +36,18 @@ export class ItensPage {
   }
 
   atualizaItens() {
-    let itens: Array<Item> = this.itensProvider.getItens();
-    this.itens = itens.filter(
-      item => !(this.evento.idItens.includes(item.id))
-    );
+    this.itensProvider.getItens().then( dados => {
+      let itens: Array<Item> = dados;
+      this.itens = itens.filter(
+        item => !(this.evento.idItens.includes(item.id))
+      );
+    });
   }
 
   selecionarItem(codigo) {
-    let cod: number = parseInt(codigo);
     
-    let idItens: Array<number> = this.evento.idItens;
-    idItens.push(cod);
+    let idItens: Array<string> = this.evento.idItens;
+    idItens.push(codigo);
 
     this.eventosProvider.editaEvento(this.evento.id, this.evento.nome,
       this.evento.local, this.evento.data, this.evento.contato,
@@ -55,19 +58,17 @@ export class ItensPage {
 
   editaItem(codigo, slidingItem: ItemSliding) {
     slidingItem.close();
-    let cod = parseInt(codigo);
-    this.navCtrl.push(ItemPage, { id: cod, novo: false });
+    this.navCtrl.push(ItemPage, { id: codigo, novo: false });
   }
 
   deletaItem(codigo) {
-    let cod = parseInt(codigo);
-    this.itensProvider.deletaItem(cod);
-
-    this.atualizaItens();
+    this.itensProvider.deletaItem(codigo).then(response => {
+      this.atualizaItens();
+    });
   }
 
   novoItem() {
-    this.navCtrl.push(ItemPage, { id: -1, novo: true });
+    this.navCtrl.push(ItemPage, { id: '-1', novo: true });
   }
 
 }

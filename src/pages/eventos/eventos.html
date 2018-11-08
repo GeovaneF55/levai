@@ -31,7 +31,13 @@
         </button>
       </ion-item-options>
     </ion-item-sliding>
-  </ion-list>    
+  </ion-list>
+  
+  <ion-card class="empty" *ngIf="eventos === undefined || eventos.length == 0">
+    <ion-card-content>
+      <p>A lista de eventos está vazia.</p>
+    </ion-card-content>
+  </ion-card>
 
   <ion-fab bottom right>
     <button ion-fab (click)="novoEvento()">

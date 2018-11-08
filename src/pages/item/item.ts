@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { ItensProvider } from '../../providers/itens/itens';
+import { Item } from '../../interfaces/item';
 
 @Component({
   selector: 'page-item',
@@ -9,7 +10,7 @@ import { ItensProvider } from '../../providers/itens/itens';
 })
 export class ItemPage {
 
-  idItem: number;
+  idItem: string;
   nomeItem: string;
   vmaxItem: number;
   qtminItem: number;
@@ -24,15 +25,13 @@ export class ItemPage {
     this.novo = navParams.get('novo');
 
     if(!this.novo){
-      let itens = itensProvider.getItens();
-      for(let i=0; i<itens.length; i++){
-        if(itens[i].id == this.idItem){
-          this.nomeItem = itens[i].nome;
-          this.vmaxItem = itens[i].vmax;
-          this.qtminItem = itens[i].qtmin;
-          break;
-        }
-      }
+      itensProvider.getItem(this.idItem).then(dados => {
+        let item: Item = dados;
+
+        this.nomeItem = item.nome;
+        this.vmaxItem = item.vmax;
+        this.qtminItem = item.qtmin;
+      });
     } else {
       this.nomeItem = "";
       this.vmaxItem = 0;

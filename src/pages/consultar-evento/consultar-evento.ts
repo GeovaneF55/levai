@@ -19,7 +19,7 @@ import { Item } from '../../interfaces/item';
 })
 export class ConsultarEventoPage {
 
-  idEvento: number;
+  idEvento: string;
   evento: Evento;
   participantesEvento: Array<Participante>;
   itensEvento: Array<Item>;
@@ -40,17 +40,25 @@ export class ConsultarEventoPage {
   }
 
   getDados() {
-    this.evento = this.eventosProvider.getEvento(this.idEvento);
-    let participantes: Array<Participante> = this.participantesProvider.getParticipantes();
-    let itens: Array<Item> = this.itensProvider.getItens();
+    this.eventosProvider.getEvento(this.idEvento).then(dados => {
+      this.evento = dados;
+    });
+    
+    this.participantesProvider.getParticipantes().then(dados => {
+      let participantes: Array<Participante> = dados;
 
-    this.participantesEvento = participantes.filter(
-      participante => this.evento.idParticipantes.includes(participante.id)
-    );
+      this.participantesEvento = participantes.filter(
+        participante => this.evento.idParticipantes.includes(participante.id)
+      );
+    });
+    
+    this.itensProvider.getItens().then(dados => {
+      let itens: Array<Item> = dados;
 
-    this.itensEvento = itens.filter(
-      item => this.evento.idItens.includes(item.id)
-    );
+      this.itensEvento = itens.filter(
+        item => this.evento.idItens.includes(item.id)
+      );
+    });
   }
 
   novoItem() {
@@ -59,15 +67,12 @@ export class ConsultarEventoPage {
 
   editaItem(codigo, slidingItem: ItemSliding) {
     slidingItem.close();
-    let cod = parseInt(codigo);
-    this.navCtrl.push(ItemPage, { id: cod });
+    this.navCtrl.push(ItemPage, { id: codigo });
   }
 
   deletaItem(codigo) {
-    let cod: number = parseInt(codigo);
-
-    let idItens: Array<number> = this.evento.idItens;
-    let index = idItens.indexOf(cod);
+    let idItens: Array<string> = this.evento.idItens;
+    let index = idItens.indexOf(codigo);
 
     idItens.splice(index, 1);
 
@@ -84,10 +89,8 @@ export class ConsultarEventoPage {
   }
 
   deletaParticipante(codigo) {
-    let cod: number = parseInt(codigo);
-
-    let idParticipantes: Array<number> = this.evento.idParticipantes;
-    let index = idParticipantes.indexOf(cod);
+    let idParticipantes: Array<string> = this.evento.idParticipantes;
+    let index = idParticipantes.indexOf(codigo);
 
     idParticipantes.splice(index, 1);
 

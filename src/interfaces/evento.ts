@@ -1,10 +1,10 @@
 export interface Evento {
-    id: number,
+    id: string,
     nome: string,
     local: string,
     data: Date,
     contato: string,
     observacoes: string,
-    idParticipantes: Array<number>,
-    idItens: Array<number>
+    idParticipantes: Array<string>,
+    idItens: Array<string>
 }

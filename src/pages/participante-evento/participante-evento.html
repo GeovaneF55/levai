@@ -15,4 +15,10 @@
       </div>
     </ion-item>
   </ion-list>
+
+  <ion-card class="empty" *ngIf="participantesEvento === undefined || participantesEvento.length == 0">
+    <ion-card-content>
+      <p>A lista de participantes está vazia ou não há mais participantes a adicionar no evento</p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

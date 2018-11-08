@@ -23,26 +23,30 @@ export class ParticipanteEventoPage {
   {
     let idEvento = this.navParams.get("id");
 
-    this.evento = this.eventosProvider.getEvento(idEvento);
+    this.eventosProvider.getEvento(idEvento).then(dados => {
+      this.evento = dados;
+    });
 
-    let participantes: Array<Participante> = this.participantesProvider.getParticipantes();
-    this.participantesEvento = participantes.filter(
-      participante => !(this.evento.idParticipantes.includes(participante.id))
-    );
+    this.atualizaParticipantes();
   }
 
   ionViewDidEnter() {
-    let participantes: Array<Participante> = this.participantesProvider.getParticipantes();
-    this.participantesEvento = participantes.filter(
-      participante => !(this.evento.idParticipantes.includes(participante.id))
-    );
+    this.atualizaParticipantes();
+  }
+
+  atualizaParticipantes() {
+    this.participantesProvider.getParticipantes().then(dados => {
+      let participantes: Array<Participante> = dados;
+
+      this.participantesEvento = participantes.filter(
+        participante => !(this.evento.idParticipantes.includes(participante.id))
+      );
+    });
   }
 
   selecionarParticipante(codigo) {
-    let cod: number = parseInt(codigo);
-    
-    let idParticipantes: Array<number> = this.evento.idParticipantes;
-    idParticipantes.push(cod);
+    let idParticipantes: Array<string> = this.evento.idParticipantes;
+    idParticipantes.push(codigo);
 
     this.eventosProvider.editaEvento(this.evento.id, this.evento.nome,
       this.evento.local, this.evento.data, this.evento.contato,

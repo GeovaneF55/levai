@@ -10,14 +10,14 @@ import { Evento } from '../../interfaces/evento';
 })
 export class EventoPage {
 
-  idEvento: number;
+  idEvento: string;
   nomeEvento: string;
   localEvento: string;
   dataEvento: string;
   contatoEvento: string;
   observacoesEvento: string;
-  participantesEvento: Array<number>;
-  itensEvento: Array<number>;
+  participantesEvento: Array<string>;
+  itensEvento: Array<string>;
 
   novo: boolean;
 
@@ -29,18 +29,20 @@ export class EventoPage {
     this.novo = navParams.get('novo');
 
     if (!this.novo) {
-      let evento: Evento = this.eventosProvider.getEvento(this.idEvento);
+      this.eventosProvider.getEvento(this.idEvento).then(dados => {
+        let evento: Evento = dados;
 
-      this.nomeEvento = evento.nome;
-      this.localEvento = evento.local;
-      let d = evento.data;
-      this.dataEvento = d.getFullYear() + "-" +
-                  ("0" + (d.getMonth()+1)).substr(-2,2) + "-" +
-                  ("0" + d.getDate()).substr(-2,2);
-      this.contatoEvento = evento.contato;
-      this.observacoesEvento = evento.observacoes;
-      this.participantesEvento = evento.idParticipantes;
-      this.itensEvento = evento.idItens;
+        this.nomeEvento = evento.nome;
+        this.localEvento = evento.local;
+        let d = evento.data;
+        this.dataEvento = d.getFullYear() + "-" +
+                    ("0" + (d.getMonth()+1)).substr(-2,2) + "-" +
+                    ("0" + d.getDate()).substr(-2,2);
+        this.contatoEvento = evento.contato;
+        this.observacoesEvento = evento.observacoes;
+        this.participantesEvento = evento.idParticipantes;
+        this.itensEvento = evento.idItens;
+      });
     } else {
       this.nomeEvento = "";
       this.localEvento = "";

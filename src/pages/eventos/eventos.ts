@@ -27,29 +27,28 @@ export class EventosPage {
   }
 
   atualizaEventos() {
-    this.eventos = this.eventosProvider.getEventos();
+    this.eventosProvider.getEventos().then(dados => {
+      this.eventos = dados;
+    });
   }
 
   selecionaEvento(codigo) {
-    let cod = parseInt(codigo);
-    this.navCtrl.push(ConsultarEventoPage, { id: cod });
+    this.navCtrl.push(ConsultarEventoPage, { id: codigo });
   }
 
   editaEvento(codigo, slidingItem: ItemSliding) {
     slidingItem.close();
-    let cod = parseInt(codigo);
-    this.navCtrl.push(EventoPage, { id: cod, novo: false });
+    this.navCtrl.push(EventoPage, { id: codigo, novo: false });
   }
 
   deletaEvento(codigo) {
-    let cod = parseInt(codigo);
-    this.eventosProvider.deletaEvento(cod);
-
-    this.atualizaEventos();
+    this.eventosProvider.deletaEvento(codigo).then(response => {
+      this.atualizaEventos();
+    });
   }
 
   novoEvento() {
-    this.navCtrl.push(EventoPage, { id: -1, novo: true });
+    this.navCtrl.push(EventoPage, { id: '-1', novo: true });
   }
 
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { ParticipantesProvider } from '../../providers/participantes/participantes';
+import { Participante } from '../../interfaces/participante';
 
 @Component({
   selector: 'page-participante',
@@ -9,7 +10,7 @@ import { ParticipantesProvider } from '../../providers/participantes/participant
 })
 export class ParticipantePage {
 
-  idParticipante: number;
+  idParticipante: string;
   nomeParticipante: string;
   contatoParticipante: string;
 
@@ -23,13 +24,12 @@ export class ParticipantePage {
       this.novo = navParams.get('novo');
 
       if (!this.novo) {
-        let participantes = participantesProvider.getParticipantes();
-        for (let i=0; i<participantes.length; i++) {
-          if (participantes[i].id == this.idParticipante) {
-            this.nomeParticipante = participantes[i].nome;
-            this.contatoParticipante = participantes[i].contato;
-          }
-        }
+        participantesProvider.getParticipante(this.idParticipante).then(dados => {
+          let participante: Participante = dados;
+
+          this.nomeParticipante = participante.nome;
+          this.contatoParticipante = participante.contato;
+        });
       } else {
         this.nomeParticipante = "";
         this.contatoParticipante = "";

@@ -3,6 +3,11 @@ import { HttpModule } from '@angular/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
+// Firebase
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import firebaseConfig from './credentials';
+
 // Pages
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -40,6 +45,8 @@ import { ParticipantesProvider } from '../providers/participantes/participantes'
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
